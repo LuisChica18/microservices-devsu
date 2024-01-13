@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "f744d87b-a593-4260-bc24-3308af40cf9f",
+		"name": "Client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16230861"
+	},
+	"item": [
+		{
+			"name": "Create Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Luis Manuel\",\r\n    \"gender\": \"Masculino\",\r\n    \"age\": 38,\r\n    \"dni\":\"1717171718\",\r\n    \"address\": \"Dirección\",\r\n    \"phone\": \"+593999999\",\r\n    \"password\":\"ganador\",\r\n    \"state\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/clientes/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"clientes",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Client",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/clientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/clientes/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

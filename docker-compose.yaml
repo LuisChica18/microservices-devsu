@@ -1,0 +1,67 @@
+version: "3.9"
+services:
+  mysql8:
+    container_name: mysql8
+    image: mysql:8
+    ports:
+      - "33306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: sasa
+      MYSQL_DATABASE: devsu
+    volumes:
+      - data-mysql:/var/lib/mysql
+    restart: always
+    networks:
+      - network01
+
+  registry-service:
+    container_name: registry-service
+    build:
+      context: ./
+      dockerfile: ./registry-service/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file: ./registry-service/.env
+    networks:
+      - network01
+    restart: always
+
+  microservice-client:
+    container_name: microservice-client
+    build:
+      context: ./
+      dockerfile: ./microservice-client/Dockerfile
+    ports:
+      - "8001:8001"
+    env_file: ./microservice-client/.env
+    networks:
+      - network01
+    depends_on:
+      - mysql8
+      - registry-service
+    restart: always
+
+  microservice-banking:
+    container_name: microservice-banking
+    build:
+      context: ./
+      dockerfile: ./microservice-banking/Dockerfile
+    ports:
+      - "8002:8002"
+    env_file:
+      - ./microservice-banking/.env
+    networks:
+      - network01
+    depends_on:
+      - mysql8
+      - registry-service
+      - microservice-client
+    restart: always
+
+volumes:
+  data-mysql:
+    name: data-mysql
+
+networks:
+  network01:
+    name: network01
